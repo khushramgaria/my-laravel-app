@@ -3,6 +3,7 @@
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use App\Models\JobListings;
 
 Route::get('/', function () {
     return view('home', [
@@ -16,12 +17,12 @@ Route::get('/about', function () {
 
 Route::get('/jobs', function () {
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => JobListings::all()
     ]);
 });
 
 Route::get('/jobs/{id}', function ($id) {
-    $jobs = Job::all();
+    $jobs = JobListings::all();
 
     //One Method
     // Arr::first( $jobs, function($job) use ($id) {
@@ -32,7 +33,7 @@ Route::get('/jobs/{id}', function ($id) {
     // $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
 
     //3rd Method
-    $job = Job::find($id);
+    $job = JobListings::find($id);
     // dd($job);
     return view('job', [
         "job" => $job
